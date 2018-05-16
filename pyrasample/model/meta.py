@@ -23,5 +23,8 @@ Base = declarative_base(metadata=metadata)
 
 
 def reflect(engine):
+    """
+    Reflects the database tables.
+    """
     metadata.reflect(bind=engine)
     LOGGER.info("Reflected %d tables", len(metadata.tables))

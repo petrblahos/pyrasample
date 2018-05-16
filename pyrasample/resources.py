@@ -4,6 +4,11 @@ from pyrasample.model.meta import metadata
 
 
 class TopContext(object):
+    """
+    Just a plain python object, needs __name__, __parent__, __init__
+    and __getitem__.
+
+    """
     __name__ = ""
     __parent__ = None
 
@@ -12,10 +17,20 @@ class TopContext(object):
         self.tables = metadata.tables
 
     def __getitem__(self, key):
+        """
+        Will raise KeyError if the key is not found.
+        """
         return DBContext(self, key)
 
 
 class DBContext(object):
+    """
+    Automatically paging objects. The schema is:
+        tablename.page
+    or just
+        tablename
+    for the first page.
+    """
     ITEMS_PER_PAGE = 50
 
     def __init__(self, parent, name):
@@ -39,8 +54,7 @@ class DBContext(object):
 
     def __getitem__(self, name):
         """
-            Returns the child context, either for the new item or by the
-            primary key.
+        Returns the child context, by the primary key.
         """
         params = parse_qs(name)
         q = self.request.db.query(self.model)
@@ -52,6 +66,10 @@ class DBContext(object):
 
 
 class ItemContext(object):
+    """
+    The item is looked up within the parent (DBContext) context,
+    using primary key.
+    """
     def __init__(self, parent, name, item):
         self.request = parent.request
         self.__parent__ = parent

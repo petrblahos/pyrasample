@@ -14,6 +14,18 @@ def named_view_in_root(request):
 @view_config(context="pyrasample.resources.TopContext",
              renderer="templates/home.mako")
 def home(context, request):
+    """
+    View callable parameters are either
+        context, request
+    or just
+        request.
+
+    There is also request.context.
+
+    In mako templates, request is accessible as request, context as _context.
+    Values contained in the returned dictionary can be accessed within the
+    template under variables named by the dictionary keys.
+    """
     return {}
 
 
