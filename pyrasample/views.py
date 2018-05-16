@@ -11,8 +11,9 @@ def named_view_in_root(request):
     return {}
 
 
-@view_config(context="pyrasample.resources.TopContext", renderer="templates/home.mako")
-def home(request):
+@view_config(context="pyrasample.resources.TopContext",
+             renderer="templates/home.mako")
+def home(context, request):
     return {}
 
 
