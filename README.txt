@@ -1,5 +1,8 @@
 pyrasample
 ==========
+This is a companion project to a talk delivered during Prague PyVo Event
+on the 16th May 2018. You will find the talks in docs/
+
 
 Getting Started
 ---------------
@@ -20,10 +23,9 @@ Getting Started
 
     env/bin/pip install -e ".[testing]"
 
-- Run your project's tests.
-
-    env/bin/pytest
+- Edit your development.ini. Point the sqlalchemy.url to an existing
+  database
 
 - Run your project.
 
-    env/bin/pserve development.ini
+    env/bin/pserve --reload development.ini
