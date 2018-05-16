@@ -1,26 +1,11 @@
 from urllib.parse import parse_qs
 
-from pyramid.security import (
-    Allow, Deny,
-    Everyone, Authenticated,
-    ALL_PERMISSIONS,
-)
-
 from pyrasample.model.meta import metadata
 
 
 class TopContext(object):
     __name__ = ""
     __parent__ = None
-
-    __acl__ = [
-        (Allow, Everyone, "access"),
-        (Allow, "group:admin", ALL_PERMISSIONS),
-        (Allow, "group:foreman", "edit"),
-        (Allow, "group:techno", "edit"),
-        (Allow, Authenticated, "changepassword"),
-        (Deny, Everyone, ALL_PERMISSIONS),
-    ]
 
     def __init__(self, request):
         self.request = request
@@ -64,7 +49,6 @@ class DBContext(object):
         return ItemContext(self, name, q.one())
 
     __name__ = property(get_name)
-
 
 
 class ItemContext(object):
