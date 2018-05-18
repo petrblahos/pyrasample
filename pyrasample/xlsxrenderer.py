@@ -6,6 +6,7 @@ import openpyxl.writer.excel
 
 
 class XLSXRenderer(object):
+    XLSX_CONTENT_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     def __init__(self, info):
         self.suffix = info.type
         self.templates_pkg = info.package.__name__ + ".xlsx"
@@ -27,7 +28,7 @@ class XLSXRenderer(object):
             response = request.response
             ct = response.content_type
             if ct == response.default_content_type:
-                response.content_type = 'application/excel'
+                response.content_type = XLSXRenderer.XLSX_CONTENT_TYPE
             response.content_disposition = 'attachment;filename=%s.xlsx' % templ_name
 
         return openpyxl.writer.excel.save_virtual_workbook(wb)
