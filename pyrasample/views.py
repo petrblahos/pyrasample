@@ -29,7 +29,11 @@ def home(context, request):
     return {}
 
 
-@view_config(context="pyrasample.resources.DBContext", renderer="templates/dbtable.mako")
+@view_config(context="pyrasample.resources.DBContext",
+             renderer="dbtable.xlsx",
+             request_param="xlsx")
+@view_config(context="pyrasample.resources.DBContext",
+             renderer="templates/dbtable.mako")
 def dbtable(request):
     return {}
 
@@ -46,6 +50,9 @@ def dbitem_prev(context, request):
     return HTTPFound(location=request.resource_url(context))
 
 
+@view_config(context="pyrasample.resources.ItemContext",
+             renderer="dbitem.xlsx",
+             request_param="xlsx")
 @view_config(context="pyrasample.resources.ItemContext", renderer="templates/dbitem.mako")
 def dbitem(request):
     return {}

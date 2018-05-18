@@ -15,6 +15,7 @@ requires = [
     'pyramid_debugtoolbar',
     'waitress',
     'pyramid_tm', 'pyramid_retry', 'zope.sqlalchemy',
+    'openpyxl',
 ]
 
 tests_require = [

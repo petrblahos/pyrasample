@@ -3,7 +3,7 @@
 from urllib.parse import urlencode
 %>
 <div class="content">
-  <h1>${ _context.__parent__.model.name }</h1>
+  <h1>${ _context.__parent__.model.name } <a href="${ request.resource_url(_context, query={"xlsx":1}) }">...xlsx</a></h1>
   <form class="form-horizontal">
   % for (field, value) in _context.item._asdict().items():
     <div class="form-group">
@@ -15,4 +15,3 @@ from urllib.parse import urlencode
   % endfor
   </form>
 </div>
-

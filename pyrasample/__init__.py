@@ -11,6 +11,7 @@ def main(global_config, **settings):
 
     config.include('pyramid_mako')      # runs pyramid_mako.includeme
     config.include('pyrasample.model')  # runs pyrasample.model.includeme
+    config.add_renderer(".xlsx", "pyrasample.xlsxrenderer.XLSXRenderer")
 
     config.scan()
 

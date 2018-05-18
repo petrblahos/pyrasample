@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 ROW_LIMIT = 1000
 %>
 <div class="content">
-  <h1>${ _context.model }</h1>
+  <h1>${ _context.model } <a href="${ request.resource_url(_context, query={"xlsx":1}) }">...xlsx</a></h1>
   <nav aria-label="pager">
     <ul class="pager">
       <li class="previous"><a href="${ request.resource_url(_context, "prev") }"><span aria-hidden="true">&larr;</span> Previous page</a></li>
